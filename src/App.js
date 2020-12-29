@@ -13,7 +13,7 @@ const App = () => {
           <a href="/">React Shopping Cart</a>
         </header>
         <main>
-          Feature 1 <br />
+          Feature 1 uj <br />
           Product List
         </main>
         <footer>
