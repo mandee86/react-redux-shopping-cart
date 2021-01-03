@@ -1,55 +1,27 @@
 import { createGlobalStyle } from 'styled-components';
-import { Colors } from './Theme.styles'
+
+// utils
+import { Utils } from './utils/Utils.styles'
+
+// base
+import { Base } from './Base.styles'
+
+// elements
+import { Buttons } from './elements/Buttons.styles'
+import { Links } from './elements/Links.styles'
+import { Images } from './elements/Images.styles'
 
 export const GlobalStyles = createGlobalStyle`
-  html, body, #root {
-    height: 100%;
-    font-size: 16px;
-  }
+  /* utils */
+  ${Utils}
 
-  body {
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    font-family: 'Catamaran', sans-serif;
-    font-size: 1rem;
-    line-height: 1.4;
-    color: black;
-  }
+  /* typography */
 
-  * {
-    box-sizing: border-box;
-  }
+  /* base */
+  ${Base}
 
-  .grid-container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  header, footer {
-    background-color: ${Colors['dark-blue']};
-    color: ${Colors['white']};
-    padding: 10px 20px;
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-
-  main {
-    padding: 20px;
-    flex: 1;
-  }
-
-  footer {
-    text-align: center;
-  }
-
-  a {
-    &:hover {
-      color: ${Colors['orange']}
-    }
-  }
+  /* elements */
+  ${Buttons}
+  ${Links}
+  ${Images}
 `;
