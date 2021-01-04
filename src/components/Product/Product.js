@@ -8,7 +8,7 @@ import Button from '../Button/Button'
 // styles
 import { StyledProduct } from './Product.styles'
 
-const Product = ({ product }) => {
+const Product = ({ product, addToCart }) => {
   return (
     <StyledProduct>
       <a href={`#${product._id}`} className="product">
@@ -18,7 +18,10 @@ const Product = ({ product }) => {
           <div>
             {formatCurrency(product.price)}
           </div>
-          <Button color={Colors['gray']}>
+          <Button
+            onClick={() => addToCart(product)}
+            color={Colors['gray']}
+          >
             Add to cart
           </Button>
         </div>

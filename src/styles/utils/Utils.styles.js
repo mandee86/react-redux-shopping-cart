@@ -31,6 +31,9 @@ export const Utils = css`
   .text-center {
     text-align: center;
   }
+  .text-right {
+    text-align: right;
+  }
 
 `;
 

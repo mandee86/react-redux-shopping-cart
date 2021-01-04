@@ -6,6 +6,7 @@ import data from '../../data/data.json'
 // components
 import Filter from '../../components/Filter/Filter'
 import ProductList from '../../components/ProductList/ProductList'
+import Cart from '../../components/Cart/Cart'
 
 // styles
 import { StyledProductsContainer } from './Products.styles'
@@ -13,6 +14,7 @@ import { StyledProductsContainer } from './Products.styles'
 const Products = () => {
 
   const [products, setProducts] = useState(data.products);
+  const [cartItems, setCartItems] = useState([])
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
 
@@ -37,7 +39,7 @@ const Products = () => {
     setSort(event.target.value)
 
     const productsArr = [...data.products];
-    const sortedProducts = productsArr.slice().sort((a, b) => (
+    const sortedProducts = productsArr.sort((a, b) => (
       sort === "lowest" ? 
         ((a.price > b.price) ? 1 : -1) : 
       sort === "highest" ? 
@@ -48,20 +50,58 @@ const Products = () => {
     setProducts(sortedProducts)
   }
 
-  return (
-    <StyledProductsContainer>
-      <Filter
-        count={products.length}
-        size={size}
-        sort={sort}
-        filterProducts={filterProducts}
-        sortProducts={sortProducts}
-      />
-      <ProductList
-        products={products}
-      />
-    </StyledProductsContainer>
+  const addToCart = (product) => {
+    // clone copy
+    // const cartItems = cartItems.slice()
+    // or
+    const cartItemsArr = [...cartItems];
+    let alreadyInCart = false;
+
+    // 
+    cartItemsArr.forEach(item => {
+      if(item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    })
+
+    if(!alreadyInCart) {
+      // add product as a new item
+      cartItemsArr.push({...product, count: 1})
+    }
+  
+    setCartItems(cartItemsArr)
+  }
+
+  const removeFromCart = (product) => {
+    const cartItemsArr = [...cartItems];
+    const filteredArr = cartItemsArr.filter(item => item._id !== product._id);
     
+    setCartItems(filteredArr)
+  }
+
+  return (
+    <>
+      <div className="main">
+        <Filter
+          count={products.length}
+          size={size}
+          sort={sort}
+          filterProducts={filterProducts}
+          sortProducts={sortProducts}
+        />
+        <ProductList
+          products={products}
+          addToCart={addToCart}
+        />
+      </div>
+      <div className="sidebar">
+        <Cart
+          cartItems={cartItems}
+          removeFromCart={removeFromCart}
+        />
+      </div>
+    </> 
   ) 
 }
 
