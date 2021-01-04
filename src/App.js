@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
-import data from './data/data.json'
+import React from 'react';
 
-// Components
+// Container
 import Products from './containers/Products/Products'
 
 // Styles
 import { GlobalStyles } from './styles/GlobalStyles.styles';
 
 const App = () => {
-
-  const [products, setProducts] = useState(data.products);
-  const [size, setSize] = useState("");
-  const [sort, setSort] = useState("");
 
   return (
     <>
@@ -25,7 +20,7 @@ const App = () => {
         <main>
           <div className="content">
             <div className="main">
-              <Products products={products} />
+              <Products />
             </div>
             <div className="sidebar">
               Cart Items
