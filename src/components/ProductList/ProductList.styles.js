@@ -12,17 +12,6 @@ export const StyledProductList = styled.div`
     li {
       width: 33%;
       padding: 10px;
-      a {
-        display: block;
-      }
-      .product {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        img {
-          max-width: 100%;
-        }
-      }
     }
   }
 `;
