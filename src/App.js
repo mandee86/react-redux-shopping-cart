@@ -19,12 +19,7 @@ const App = () => {
 
         <main>
           <div className="content">
-            <div className="main">
-              <Products />
-            </div>
-            <div className="sidebar">
-              Cart Items
-            </div>
+            <Products />
           </div>
         </main>
 

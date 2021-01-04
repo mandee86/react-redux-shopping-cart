@@ -6,7 +6,7 @@ import { StyledProductList } from './ProductList.styles'
 // components
 import Product from '../Product/Product'
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addToCart, removeFromCart }) => {
   return (
     <StyledProductList>
       <h2>Product list</h2>
@@ -14,7 +14,10 @@ const ProductList = ({ products }) => {
         {products && products.map(product => {
           return (
             <li key={product._id}>
-              <Product product={product} />
+              <Product
+                product={product}
+                addToCart={addToCart}
+              />
             </li>
           )
         })}
