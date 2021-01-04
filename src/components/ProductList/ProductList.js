@@ -6,7 +6,8 @@ import { StyledProductList } from './ProductList.styles'
 // components
 import Product from '../Product/Product'
 
-const ProductList = ({ products, addToCart, removeFromCart }) => {
+const ProductList = ({ products, addToCart }) => {
+  
   return (
     <StyledProductList>
       <h2>Product list</h2>

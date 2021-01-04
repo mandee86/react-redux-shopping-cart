@@ -3,9 +3,9 @@ import React from 'react';
 // styles
 import { StyledButton } from './Button.styles'
 
-const Button = ({ color, children, onClick, classes }) => {
+const Button = ({ color, children, onClick, classes, type = "button" }) => {
   return (
-    <StyledButton className={[classes, "btn"].join(" ")} color={color} onClick={onClick}>
+    <StyledButton type={type} className={[classes, "btn"].join(" ")} color={color} onClick={onClick}>
       {children}
     </StyledButton>
   ) 

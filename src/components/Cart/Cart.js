@@ -7,7 +7,8 @@ import Button from '../Button/Button'
 // styles
 import { StyledCart } from './Cart.styles'
 
-const Cart = ({ cartItems, removeFromCart }) => {
+const Cart = ({ cartItems, removeFromCart, showCheckout }) => {
+
   return (
     <StyledCart>
       {cartItems.length === 0 ? (
@@ -53,7 +54,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
                   cartItems.reduce((a, c) => a + c.price * c.count, 0)
                 )}
               </span>
-              <Button>Proceed</Button>
+              <Button onClick={showCheckout}>Proceed</Button>
             </div>
           </div>
         )}

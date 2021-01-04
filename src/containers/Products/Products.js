@@ -7,16 +7,23 @@ import data from '../../data/data.json'
 import Filter from '../../components/Filter/Filter'
 import ProductList from '../../components/ProductList/ProductList'
 import Cart from '../../components/Cart/Cart'
+import CheckoutForm from '../../components/CheckoutForm/CheckoutForm'
 
 // styles
 import { StyledProductsContainer } from './Products.styles'
 
 const Products = () => {
 
+  // product list
   const [products, setProducts] = useState(data.products);
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
+
+  // filter
   const [size, setSize] = useState("");
   const [sort, setSort] = useState("");
+
+  // cart & checkout
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const filterProducts = (event) => {
     const productsArr = [...data.products]
@@ -54,11 +61,11 @@ const Products = () => {
     // clone copy
     // const cartItems = cartItems.slice()
     // or
-    const cartItemsArr = [...cartItems];
+    const _cartItems = [...cartItems];
     let alreadyInCart = false;
 
     // 
-    cartItemsArr.forEach(item => {
+    _cartItems.forEach(item => {
       if(item._id === product._id) {
         item.count++;
         alreadyInCart = true;
@@ -67,17 +74,29 @@ const Products = () => {
 
     if(!alreadyInCart) {
       // add product as a new item
-      cartItemsArr.push({...product, count: 1})
+      _cartItems.push({...product, count: 1})
     }
   
-    setCartItems(cartItemsArr)
+    setCartItems(_cartItems);
+    localStorage.setItem('cartItems', JSON.stringify(_cartItems))
   }
 
   const removeFromCart = (product) => {
-    const cartItemsArr = [...cartItems];
-    const filteredArr = cartItemsArr.filter(item => item._id !== product._id);
+    const _cartItems = [...cartItems];
+    const filteredCartItems = _cartItems.filter(item => item._id !== product._id);
     
-    setCartItems(filteredArr)
+    setCartItems(filteredCartItems)
+    localStorage.setItem('cartItems', JSON.stringify(filteredCartItems))
+  }
+
+  const createOrder = (e, checkoutDatas) => {
+    e.preventDefault();
+    const order = {
+      ...checkoutDatas,
+      cartItems
+    }
+
+    alert(`Need to save to db ${order}`)
   }
 
   return (
@@ -99,7 +118,13 @@ const Products = () => {
         <Cart
           cartItems={cartItems}
           removeFromCart={removeFromCart}
+          showCheckout={() => setShowCheckout(true)}
         />
+        {showCheckout && (
+          <CheckoutForm 
+            createOrder={createOrder}
+          />
+        )}
       </div>
     </> 
   ) 
