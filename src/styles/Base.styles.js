@@ -20,43 +20,4 @@ export const Base = css`
   * {
     box-sizing: border-box;
   }
-
-  .grid-container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  header, footer {
-    background-color: ${Colors['dark-blue']};
-    color: ${Colors['white']};
-    padding: 10px 20px;
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-  }
-
-  main {
-    padding: 20px;
-    flex: 1;
-  }
-
-  footer {
-    text-align: center;
-  }
-
-  .content {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .main {
-    flex: 3;
-  }
-
-  .sidebar {
-    flex: 1;
-  }
 `;

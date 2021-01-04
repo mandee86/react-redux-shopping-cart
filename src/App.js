@@ -12,21 +12,8 @@ const App = () => {
     <>
       <GlobalStyles />
 
-      <div className="grid-container">
-        <header>
-          <a href="/">React Shopping Cart</a>
-        </header>
-
-        <main>
-          <div className="content">
-            <Products />
-          </div>
-        </main>
-
-        <footer>
-          All right is reserved.
-        </footer>
-      </div>
+      {/* products page */}
+      <Products />
     </>
   );
 }

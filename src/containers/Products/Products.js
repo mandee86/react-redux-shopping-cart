@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 // data
 import data from '../../data/data.json'
 
+// layout
+import Main from '../../layouts/Main';
+
 // components
 import Filter from '../../components/Filter/Filter'
 import ProductList from '../../components/ProductList/ProductList'
@@ -100,8 +103,8 @@ const Products = () => {
   }
 
   return (
-    <>
-      <div className="main">
+    <Main>
+      <Main.Content>
         <Filter
           count={products.length}
           size={size}
@@ -113,8 +116,8 @@ const Products = () => {
           products={products}
           addToCart={addToCart}
         />
-      </div>
-      <div className="sidebar">
+      </Main.Content>
+      <Main.SideBar>
         <Cart
           cartItems={cartItems}
           removeFromCart={removeFromCart}
@@ -125,8 +128,8 @@ const Products = () => {
             createOrder={createOrder}
           />
         )}
-      </div>
-    </> 
+      </Main.SideBar>
+    </Main> 
   ) 
 }
 
