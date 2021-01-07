@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '../Button/Button'
 
 // styles
+import Fade from 'react-reveal/Fade';
 import { StyledCheckoutForm } from './CheckoutForm.styles'
 
 const CheckoutForm = ({ createOrder }) => {
@@ -18,45 +19,47 @@ const CheckoutForm = ({ createOrder }) => {
   }
 
   return (
-    <StyledCheckoutForm onSubmit={createOrder} className="form-container">
-      <ul className="form-container">
-        <li>
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            required
-            onChange={(e) => changeInput(e)}
-          /> 
-        </li>
-        <li>
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            required
-            onChange={(e) => changeInput(e)}
-          /> 
-        </li>
-        <li>
-          <label>Address</label>
-          <input
-            name="address"
-            type="text"
-            required
-            onChange={(e) => changeInput(e)}
-          /> 
-        </li>
-        <li>
-          <Button
-          type="submit"
-          onClick={(e) => createOrder(e, checkoutDatas)}
-        >
-          Checkout
-        </Button>
-        </li>
-      </ul>
-    </StyledCheckoutForm>
+    <Fade right cascade>
+      <StyledCheckoutForm onSubmit={createOrder} className="form-container">  
+        <ul className="form-container">
+          <li>
+            <label>Email</label>
+            <input
+              name="email"
+              type="email"
+              required
+              onChange={(e) => changeInput(e)}
+            /> 
+          </li>
+          <li>
+            <label>Name</label>
+            <input
+              name="name"
+              type="text"
+              required
+              onChange={(e) => changeInput(e)}
+            /> 
+          </li>
+          <li>
+            <label>Address</label>
+            <input
+              name="address"
+              type="text"
+              required
+              onChange={(e) => changeInput(e)}
+            /> 
+          </li>
+          <li>
+            <Button
+            type="submit"
+            onClick={(e) => createOrder(e, checkoutDatas)}
+          >
+            Checkout
+          </Button>
+          </li>
+        </ul>
+      </StyledCheckoutForm>
+    </Fade>
   ) 
 }
 

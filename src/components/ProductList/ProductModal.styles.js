@@ -1,20 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledProductList = styled.div`
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    li {
-      width: 33%;
-      padding: 10px;
-    }
-  }
-  /* modal */
+export const StyledProductModal = styled.div`
   .product-details {
     display: flex;
     flex-wrap: wrap;
@@ -28,6 +14,13 @@ export const StyledProductList = styled.div`
     .product-details-description {
       flex: 1;
       margin: 10px;
+    }
+    .product-price {
+      display: flex;
+      align-items: center;
+      .btn {
+        margin-left: 15px;
+      }
     }
   }
 `;

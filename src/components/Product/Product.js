@@ -8,11 +8,17 @@ import Button from '../Button/Button'
 // styles
 import { StyledProduct } from './Product.styles'
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product, addToCart, openModal }) => {
+
   return (
+    <>
     <StyledProduct>
       <a href={`#${product._id}`} className="product">
-        <img src={product.image} alt={product.title} />
+        <img
+          src={product.image}
+          alt={product.title}
+          onClick={() => openModal(product)}
+        />
         <p>{product.title}</p>
         <div className="product-price">
           <div>
@@ -27,6 +33,7 @@ const Product = ({ product, addToCart }) => {
         </div>
       </a>
     </StyledProduct>
+    </>
   ) 
 }
 
