@@ -79,7 +79,23 @@
   6. Add header, main and footer
   7. Update index.css to add grid
   
+.
+.
+.
 
+10. Create Products Backend
+  1. Install nodemon globally
+  2. Add server.js (package.json -> scripts part)
+  3. Install express body-parser mongoose shortid
+  4. Install MongoDB
+  5. app = express()
+  6. app.use(bodyPerser.json())
+  7. mongoose.connect()
+  8. create Product model
+  9. app.post("api.products")
+  10. Postman send post request
+  11. route.get("/api/products)
+  12. route.delete("/api/products/:id")
 
 
       ... -->
