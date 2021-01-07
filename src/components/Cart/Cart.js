@@ -5,6 +5,7 @@ import formatCurrency from '../../utils';
 import Button from '../Button/Button'
 
 // styles
+import Fade from 'react-reveal/Fade';
 import { StyledCart } from './Cart.styles'
 
 const Cart = ({ cartItems, removeFromCart, showCheckout }) => {
@@ -22,28 +23,30 @@ const Cart = ({ cartItems, removeFromCart, showCheckout }) => {
       )}
       <div>
         <div className="cart">
-          <ul className="cart-items">
-            {cartItems.map(item => {
-              return (
-                <li key={item._id}>
-                  <div>
-                    <img src={item.image} alt={item.title} />
-                  </div>
-                  <div>
-                    <div>{item.title}</div>
-                    <div className="text-right">
-                      {formatCurrency(item.price)} x {item.count} {" "}
-                      <Button
-                        onClick={() => removeFromCart(item)}
-                      >
-                        Remove
-                      </Button>
+          <Fade left cascade>
+            <ul className="cart-items">
+              {cartItems.map(item => {
+                return (
+                  <li key={item._id}>
+                    <div>
+                      <img src={item.image} alt={item.title} />
                     </div>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
+                    <div>
+                      <div>{item.title}</div>
+                      <div className="text-right">
+                        {formatCurrency(item.price)} x {item.count} {" "}
+                        <Button
+                          onClick={() => removeFromCart(item)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </Fade>
         </div>
         {cartItems.length !== 0 && (
           <div className="cart">
