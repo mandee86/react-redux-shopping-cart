@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 // data
 import data from '../../data/data.json'
@@ -15,10 +16,13 @@ import CheckoutForm from '../../components/CheckoutForm/CheckoutForm'
 // styles
 import { StyledProductsContainer } from './Products.styles'
 
-const Products = () => {
+// actions
+import { fetchProducts } from '../../redux/products/productActions';
+
+const Products = ({ items, fetchProducts}) => {
 
   // product list
-  const [products, setProducts] = useState(data.products);
+  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
 
   // filter
@@ -28,14 +32,19 @@ const Products = () => {
   // cart & checkout
   const [showCheckout, setShowCheckout] = useState(false);
 
+  // ~ componentDidMount, componentDidUpdate ...
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
   const filterProducts = (event) => {
-    const productsArr = [...data.products]
+    const productsArr = [...items]
     const filteredProducts = productsArr.filter(product => product.availableSizes.indexOf(event.target.value) >= 0)
 
     // imp
     if(event.target.value === "") {
       setSize(event.target.value);
-      setProducts(data.products)
+      setProducts(items)
     }
     else {
       setSize(event.target.value)
@@ -48,7 +57,7 @@ const Products = () => {
     const sort = event.target.value
     setSort(event.target.value)
 
-    const productsArr = [...data.products];
+    const productsArr = [...items];
     const sortedProducts = productsArr.sort((a, b) => (
       sort === "lowest" ? 
         ((a.price > b.price) ? 1 : -1) : 
@@ -112,10 +121,14 @@ const Products = () => {
           filterProducts={filterProducts}
           sortProducts={sortProducts}
         />
-        <ProductList
-          products={products}
-          addToCart={addToCart}
-        />
+        {!items ? (
+          <div>Loading...</div>
+        ) : (
+            <ProductList
+            products={items}
+            addToCart={addToCart}
+          />
+        )}
       </Main.Content>
       <Main.SideBar>
         <Cart
@@ -133,4 +146,19 @@ const Products = () => {
   ) 
 }
 
-export default Products;
+// get products from redux store as props (access to redux store)
+const mapStateToProps = state => {
+  // console.log(state.products.products)
+  return {
+    items: state.products.products
+  }
+}
+
+// dispatch actions by props
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

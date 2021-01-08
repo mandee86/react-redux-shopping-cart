@@ -97,6 +97,21 @@
   11. route.get("/api/products)
   12. route.delete("/api/products/:id")
 
+11. Add Redux
+  1. npm install redux react-redux redux-thunk
+  2. import redux
+  3. set initial state
+  4. create types (action types)
+  5. types.js
+  6. define FETCH_PRODUCTS
+  7. actions/productActions.js
+  8. declare fetchProducts
+  9. create reducers
+  10. reducers/productReducers.js
+  11. define case FETCH_PRODUCTS
+  12. create store
+  ... 
+
 
       ... -->
 
