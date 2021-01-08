@@ -6,8 +6,13 @@ const shortid = require('shortid');
 const app = express();
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // initialize mongo db
-// mongoose.connect("mongodb://127.0.0.1:27017/react-shopping-cart-db", {
+// mongoose.connect("mongodb://127.0.0.1:5000/react-shopping-cart-db", {
 mongoose.connect("mongodb+srv://andee86:gemini860522@cluster0.wmyqt.mongodb.net/react-shopping-cart-db?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useCreateIndex: true,
